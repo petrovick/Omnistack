@@ -21,6 +21,20 @@ docker start a91aa90223818de9a12b1ddfac61b8a0030a5bace7d8fa396b0cc0aec275ed6a
 adonis migration:run
 ```
 
+# Redis Email Configuration
+
+Go to /config/redis.js and setup the right configuration for you
+
+```bash
+docker run --name noderedis -p 6379:6379 -d -t redis:alpine
+```
+
+# Listening for Kue's jobs
+
+```bash
+adonis kue:listen
+```
+
 # Adonis API application
 
 This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.

@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "dockerinit": "docker run --name database -p 5432:5432 -d -t kartoza/postgis",
+    "dockerredisinit": "docker run --name noderedis -p 6379:6379 -d -t redis:alpine"
   },
   "keywords": [
     "adonisjs",
@@ -25,6 +27,9 @@
     "@adonisjs/ignitor": "^2.0.8",
     "@adonisjs/lucid": "^6.1.3",
     "@adonisjs/lucid-slugify": "^1.0.3",
+    "@adonisjs/mail": "^3.0.9",
+    "@adonisjs/redis": "^2.0.7",
+    "adonis-kue": "^5.0.1",
     "pg": "^7.11.0"
   },
   "devDependencies": {
