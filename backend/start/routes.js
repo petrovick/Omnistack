@@ -20,6 +20,7 @@ Route.post("sessions", "SessionController.store").validator("Session");
 Route.post("users", "UserController.store").validator("User");
 
 Route.group(() => {
+  Route.get("roles", "RoleController.index");
   //Take off edit and create method from the controller
   Route.resource("teams", "TeamController")
     .apiOnly()
@@ -27,8 +28,20 @@ Route.group(() => {
 }).middleware("auth");
 
 Route.group(() => {
-  Route.post("invites", "InviteController.store").validator("Invite");
+  Route.post("invites", "InviteController.store")
+    .validator("Invite")
+    .middleware("can:invites_create");
   Route.resource("projects", "ProjectController")
     .apiOnly()
-    .validator(new Map([[["projects.store", "projects.update"], ["Project"]]]));
+    .validator(new Map([[["projects.store", "projects.update"], ["Project"]]]))
+    .middleware(
+      new Map([
+        [["projects.store", "projects.update"], ["can:projects_create"]]
+      ])
+    );
+
+  Route.get("members", "MemberController.index");
+  Route.put("members/:id", "MemberController.update").middleware(
+    "is:administrator"
+  );
 }).middleware(["auth", "team"]);
