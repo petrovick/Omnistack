@@ -12,14 +12,14 @@ export default Creators;
 
 /* Initial State */
 export const INITIAL_STATE = Immutable({
-  signedIn: false,
-  token: null
+  signedIn: !!localStorage.getItem("@Omni:oken"),
+  token: localStorage.getItem("@Omni:oken") || null
 });
 
 /* Reducers */
 export const success = (state, { token }) => {
   console.log(token);
-  return state.merge({ signIn: true, token });
+  return state.merge({ signedIn: true, token });
 };
 
 /* Reducers to types */
