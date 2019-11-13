@@ -1,35 +1,35 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import AuthActions from "~/store/ducks/auth";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AuthActions from '~/store/ducks/auth';
 
-import Button from "~/styles/components/Button";
+import Button from '~/styles/components/Button';
 
-import { Container, SignForm } from "../styles";
+import { Container, SignForm } from '../styles';
 
 class SignIn extends Component {
   static propTypes = {
-    signInRequest: PropTypes.func.isRequired
+    signInRequest: PropTypes.func.isRequired,
   };
 
   state = {
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault(); //Previnir de redirecionar pra próxima página
+  handleSubmit = (e) => {
+    e.preventDefault(); // Previnir de redirecionar pra próxima página
 
     const { email, password } = this.state;
     const { signInRequest } = this.props;
-    console.tron.log("Chegou aqui 2");
+    console.tron.log('Chegou aqui 2');
     signInRequest(email, password);
   };
 
@@ -64,10 +64,9 @@ class SignIn extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(AuthActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(SignIn);

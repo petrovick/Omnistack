@@ -49,7 +49,7 @@ const Button = styled.button.attrs({
   border: 0;
   color: #fff;
   font-size: 12px;
-  passding: 0 10px;
+  padding: 0 10px;
   text-transform: uppercase;
   font-weight: 700;
 

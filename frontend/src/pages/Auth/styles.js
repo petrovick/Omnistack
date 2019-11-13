@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   flex: 1;
@@ -46,11 +46,11 @@ export const SignForm = styled.form`
     font-size: 16px;
 
     &:focus {
-      corder-color: #7289da;
+      border-color: #7289da;
     }
   }
 
   button {
-    margin: 20px 0;
+    margin: 20px 0 0;
   }
 `;
