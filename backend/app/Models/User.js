@@ -1,61 +1,61 @@
-"use strict";
+'use strict'
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use("Model");
+const Model = use('Model')
 
 /** @type {import('@adonisjs/framework/src/Hash')} */
-const Hash = use("Hash");
+const Hash = use('Hash')
 
 class User extends Model {
-  static boot() {
-    super.boot();
+  static boot () {
+    super.boot()
 
     /**
      * A hook to hash the user password before saving
      * it to the database.
      */
-    this.addHook("beforeSave", async userInstance => {
+    this.addHook('beforeSave', async userInstance => {
       if (userInstance.dirty.password) {
-        userInstance.password = await Hash.make(userInstance.password);
+        userInstance.password = await Hash.make(userInstance.password)
       }
-    });
+    })
   }
 
-  teamJoins() {
-    return this.hasMany("App/Models/UserTeam");
+  teamJoins () {
+    return this.hasMany('App/Models/UserTeam')
   }
 
-  tokens() {
-    return this.hasMany("App/Models/Token");
+  tokens () {
+    return this.hasMany('App/Models/Token')
   }
 
-  teams() {
-    return this.belongsToMany("App/Models/Team").pivotModel(
-      "App/Models/UserTeam"
-    );
+  teams () {
+    return this.belongsToMany('App/Models/Team').pivotModel(
+      'App/Models/UserTeam'
+    )
   }
-  //Verifica se usuario pertence à alguam role
-  //this.currentTeam setado no Middleware Team
-  async is(expression) {
+  // Verifica se usuario pertence à alguam role
+  // this.currentTeam setado no Middleware Team
+  async is (expression) {
     const team = await this.teamJoins()
-      .where("team_id", this.currentTeam)
-      .first();
-    return team.is(expression);
+      .where('team_id', this.currentTeam)
+      .first()
+    return team.is(expression)
   }
 
-  async can(expression) {
+  async can (expression) {
     const team = await this.teamJoins()
-      .where("team_id", this.currentTeam)
-      .first();
-    return team.can(expression);
+      .where('team_id', this.currentTeam)
+      .first()
+    return team.can(expression)
   }
 
-  async scope(required) {
+  async scope (required) {
     const team = await this.teamJoins()
-      .where("team_id", this.currentTeam)
-      .first();
-    return team.scope(required);
+      .where('team_id', this.currentTeam)
+      .first()
+    return team.scope(required)
   }
 }
 
-module.exports = User;
+module.exports = User

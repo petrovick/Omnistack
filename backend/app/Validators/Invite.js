@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
 class Invite {
-  get validateAll() {
-    return true;
+  get validateAll () {
+    return true
   }
-  get rules() {
+  get rules () {
     return {
-      invites: "required|array",
-      "invites.*": "required|email"
-    };
+      invites: 'required|array',
+      'invites.*': 'required|email'
+    }
   }
 }
 
-module.exports = Invite;
+module.exports = Invite

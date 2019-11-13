@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
 class Team {
-  get validateAll() {
-    return true;
+  get validateAll () {
+    return true
   }
-  get rules() {
+  get rules () {
     return {
-      name: "required"
-    };
+      name: 'required'
+    }
   }
 }
 
-module.exports = Team;
+module.exports = Team

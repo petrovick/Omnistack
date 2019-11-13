@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /**
  * Resourceful controller for interacting with projects
@@ -13,10 +13,10 @@ class ProjectController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request }) {
-    console.log(request.team);
-    const projects = request.team.projects().fetch();
-    return projects;
+  async index ({ request }) {
+    console.log(request.team)
+    const projects = request.team.projects().fetch()
+    return projects
   }
 
   /**
@@ -27,10 +27,10 @@ class ProjectController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request }) {
-    const data = request.only(["title"]);
-    const project = request.team.projects().create(data);
-    return project;
+  async store ({ request }) {
+    const data = request.only(['title'])
+    const project = request.team.projects().create(data)
+    return project
   }
 
   /**
@@ -42,12 +42,12 @@ class ProjectController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ params, request, response, view }) {
+  async show ({ params, request, response, view }) {
     const project = await request.team
       .projects()
-      .where("id", params.id)
-      .first();
-    return project;
+      .where('id', params.id)
+      .first()
+    return project
   }
 
   /**
@@ -58,17 +58,17 @@ class ProjectController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request }) {
-    const data = request.only(["title"]);
+  async update ({ params, request }) {
+    const data = request.only(['title'])
     const project = await request.team
       .projects()
-      .where("id", params.id)
-      .first();
-    console.log(data);
-    console.log(project);
-    project.merge(data);
-    await project.save();
-    return project;
+      .where('id', params.id)
+      .first()
+    console.log(data)
+    console.log(project)
+    project.merge(data)
+    await project.save()
+    return project
   }
 
   /**
@@ -79,13 +79,13 @@ class ProjectController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy({ params, request }) {
+  async destroy ({ params, request }) {
     const project = await request.team
       .projects()
-      .where("id", params.id)
-      .first();
-    await project.delete();
+      .where('id', params.id)
+      .first()
+    await project.delete()
   }
 }
 
-module.exports = ProjectController;
+module.exports = ProjectController

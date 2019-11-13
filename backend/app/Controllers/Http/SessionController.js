@@ -7,7 +7,6 @@ class SessionController {
     const token = await auth.attempt(email, password)
     return token
   }
-  
 }
 
 module.exports = SessionController
