@@ -11,7 +11,7 @@ import styles from "./styles";
 
 class TeamSwitcher extends Component {
   static propTypes = {
-    getTeamRequest: PropTypes.func.isRequired,
+    getTeamsRequest: PropTypes.func.isRequired,
     teams: PropTypes.shape({
       data: PropTypes.arrayOf(
         PropTypes.shape({
@@ -51,7 +51,7 @@ class TeamSwitcher extends Component {
             <Image
               style={styles.teamAvatar}
               source={{
-                uri: `http://ui-avatars.com/api/?font-size=0.33&background=7159c1&color=fff&name=${
+                uri: `https://ui-avatars.com/api/?font-size=0.33&background=7159c1&color=fff&name=${
                   team.name
                 }`
               }}

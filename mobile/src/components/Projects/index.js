@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import Can from '~/components/Can'
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -49,12 +50,14 @@ class Projects extends Component {
           )}
         />
 
-        <TouchableOpacity
-          style={styles.newProjectButton}
-          onPress={this.toggleModalOpen}
-        >
-          <Icon name="add" size={28} color="#FFF" />
-        </TouchableOpacity>
+        <Can checkPermission="projects_create">
+          <TouchableOpacity
+            style={styles.newProjectButton}
+            onPress={this.toggleModalOpen}
+          >
+            <Icon name="add" size={28} color="#FFF" />
+          </TouchableOpacity>
+        </Can>
 
         <NewProject
           visible={isModalOpen}
